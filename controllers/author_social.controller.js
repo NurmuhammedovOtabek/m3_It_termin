@@ -7,7 +7,7 @@ const createAuthorSocial = async (req, res) => {
     const {social_link, authorId, socialId } = req.body;
     const condidate = await Author_social.findOne({where: {social_link}})
     if(condidate){
-        sendErrorResponse({message: "bunday author_social mavjud"}, res, 400)
+         return sendErrorResponse({message: "bunday author_social mavjud"}, res, 400)
     }
     const newAuthorSocial = await Author_social.create({ social_link, authorId, socialId });
     res.status(201).json({
@@ -36,7 +36,7 @@ const getByIdAuthorS = async (req, res) => {
     const { id } = req.params;
     const dataas = await Author_social.findByPk(id);
     if(!dataas){
-        sendErrorResponse({message: "bunday author social yoq"})
+        return sendErrorResponse({message: "bunday author social yoq"})
     }
     res.status(200).json({
       message: "Succsess",
@@ -53,11 +53,11 @@ const updateAuthorS = async(req,res)=>{
         const {social_link, authorId, socialId } = req.body
         const condidate = await Author_social.findByPk(id)
         if(!condidate){
-            sendErrorResponse(error, res, 400)
+            return sendErrorResponse(error, res, 400)
         }
         const condidate2 = await Author_social.findOne({where: {social_link}})
         if(condidate2){
-            sendErrorResponse({message: "bunday author_social mavjud"}, res, 400)
+            return sendErrorResponse({message: "bunday author_social mavjud"}, res, 400)
         }
         const updateS = await Author_social.update({social_link, authorId, socialId}, {
             where:{id},
@@ -77,7 +77,7 @@ const deleteAuthorSocial = async(req,res)=>{
         const id = req.params.id
         const condidate = await Author_social.findByPk(id)
         if(!condidate){
-            sendErrorResponse({message: "Bunday Author social yoq"}, res, 400)
+            return sendErrorResponse({message: "Bunday Author social yoq"}, res, 400)
         }
         await Author_social.destroy({where:{id}})
         res.status(201).send({
