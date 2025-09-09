@@ -10,6 +10,8 @@ const descriptionRouter = require("./description.route")
 const synonymRouter = require("./synonym.route")
 const desc_topicRouter = require("./desc_topic.route")
 const tagRouter = require("./tag.route")
+const adminRouter = require("./admin.route")
+const userRouter = require("./user.route")
 
 router.use("/author", authorRouter)
 router.use("/social", socialRouter)
@@ -22,5 +24,7 @@ router.use("/description", descriptionRouter)
 router.use("/synonym", synonymRouter)
 router.use("/desc_topic", desc_topicRouter)
 router.use("/tag", tagRouter)
+router.use("/admin", adminRouter)
+router.use("/user", userRouter)
 
 module.exports = router
